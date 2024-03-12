@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "nuxt-primevue"],
+  modules: ["@pinia/nuxt", "nuxt-primevue", "@vueuse/nuxt", "@nuxtjs/supabase"],
   css: [
     "@/assets/styles/tailwind.scss",
     "primevue/resources/themes/aura-dark-blue/theme.css",
@@ -13,7 +13,20 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    SUPABASE_URL: process.env.SUPABASE_URL,
-    SUPABASE_API_KEY: process.env.SUPABASE_API_KEY,
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_API_KEY: process.env.SUPABASE_API_KEY,
+    },
+  },
+  imports: {
+    dirs: [
+      "composables",
+      "composables/*/index.{ts,js,mjs,mts}",
+      "composables/**",
+    ],
+  },
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
   },
 });
