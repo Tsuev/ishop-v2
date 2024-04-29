@@ -8,18 +8,14 @@
 </template>
 
 <script setup lang="ts">
-const supabase = useSupabaseClient();
+const authStore = useAuthStore();
 
 const email = ref("");
 const password = ref("");
 
 const registration = async () => {
   try {
-    const { data, error } = await supabase.auth.signUp({
-      email: email.value,
-      password: password.value,
-    });
-    console.log(data);
+    authStore.registration(email.value, password.value);
   } catch (error) {
     console.log(error);
   }
