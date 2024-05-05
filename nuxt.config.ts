@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ["./services"],
+    dirs: ["./stores"],
   },
   supabase: {
     url: process.env.SUPABASE_URL,
