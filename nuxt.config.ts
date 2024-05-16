@@ -1,9 +1,19 @@
+import svgLoader from "vite-svg-loader";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "nuxt-primevue", "@vueuse/nuxt", "@nuxtjs/supabase"],
+  modules: [
+    "@pinia/nuxt",
+    "nuxt-primevue",
+    "@vueuse/nuxt",
+    "@nuxtjs/supabase",
+    "nuxt-icon",
+  ],
   css: [
     "@/assets/styles/tailwind.scss",
-    "primevue/resources/themes/aura-dark-blue/theme.css",
+    "primevue/resources/themes/lara-light-blue/theme.css",
+    "@/assets/styles/_index.scss",
+    "primeicons/primeicons.css",
   ],
   postcss: {
     plugins: {
@@ -23,5 +33,9 @@ export default defineNuxtConfig({
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
+    redirect: false,
+  },
+  vite: {
+    plugins: [svgLoader()],
   },
 });

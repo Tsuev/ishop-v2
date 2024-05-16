@@ -8,3 +8,9 @@
     @tailwind components;
     @tailwind utilities;
 }
+
+.root,
+#root,
+#docs-root {
+  --primary-color: var(--primary-color);
+}

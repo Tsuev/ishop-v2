@@ -1,11 +1,11 @@
 export const useAuthStore = defineStore("auth", () => {
   const supabase = useSupabaseClient();
 
+  const user = ref(null);
+
   const registration = async (email: string, password: string) => {
     try {
       const { data, error } = await supabase.auth.signUp({ email, password });
-      console.log(data);
-      console.log(error);
     } catch (error) {
       console.log(error);
     }
@@ -13,7 +13,7 @@ export const useAuthStore = defineStore("auth", () => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
