@@ -10,7 +10,7 @@
       },
     }"
   >
-    <template #container="{ closeCallback }">
+    <template #container>
       <div
         class="flex flex-col px-5 py-5 gap-4"
         style="
@@ -25,20 +25,29 @@
         <div class="title">
           <Logo class="mx-auto" />
           <div
-            class="font-semibold text-center flex justify-center items-center mt-1 text-4xl"
+            class="modal-title font-semibold text-center flex justify-center items-center mt-2"
           >
             Регистрация
           </div>
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="username" class="font-semibold">Почта</label>
-          <InputText placeholder="Например: example@mail.ru" />
+          <InputText
+            v-model="email"
+            placeholder="Например: example@mail.ru"
+            size="small"
+          />
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="password" class="font-semibold">Пароль</label>
-          <InputText placeholder="Придумайте пароль" type="password" />
+          <InputText
+            v-model="password"
+            placeholder="Придумайте пароль"
+            type="password"
+            size="small"
+          />
         </div>
-        <Button label="Регистрация" @click="closeCallback" />
+        <Button label="Зарегистрироваться" @click="registration" />
       </div>
     </template>
   </Dialog>
@@ -48,6 +57,23 @@
 import Logo from "@/assets/img/logo.svg";
 
 const model = defineModel();
+const authStore = useAuthStore();
+
+const emit = defineEmits<{
+  (e: "modalClose"): void;
+}>();
+
+const email = ref("");
+const password = ref("");
+
+const registration = async () => {
+  await authStore.registration(email.value, password.value);
+  emit("modalClose");
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-title {
+  font-size: 22px;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <Carousel wrapAround autoplay="5000">
+  <Carousel wrapAround :autoplay="5000">
     <Slide v-for="slide in 3" :key="slide">
       <div class="carousel__item"></div>
     </Slide>
@@ -14,13 +14,16 @@
 
 <script setup lang="ts">
 import "@/node_modules/vue3-carousel/dist/carousel.css";
-
 import {
   Carousel,
   Navigation,
   Pagination,
   Slide,
 } from "@/node_modules/vue3-carousel/dist/carousel.es";
+
+const authStore = useAuthStore();
+
+onMounted(() => authStore.authStateChange());
 </script>
 
 <style lang="scss" scoped>
@@ -35,5 +38,10 @@ import {
 .carousel__next {
   box-sizing: content-box;
   border: 5px solid white;
+}
+
+.carousel__pagination {
+  .carousel__pagination-item {
+  }
 }
 </style>

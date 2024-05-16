@@ -1,6 +1,7 @@
 <template>
   <AppHeader />
   <NuxtPage />
+  <Toast position="bottom-right" />
 </template>
 
 <script setup lang="ts">

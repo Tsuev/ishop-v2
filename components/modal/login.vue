@@ -10,7 +10,7 @@
       },
     }"
   >
-    <template #container="{ closeCallback }">
+    <template #container>
       <div
         class="flex flex-col px-5 py-5 gap-4"
         style="
@@ -24,11 +24,7 @@
       >
         <div class="title">
           <Logo class="mx-auto" />
-          <div
-            class="font-semibold text-center flex justify-center items-center mt-1 text-4xl"
-          >
-            Войти
-          </div>
+          <div class="font-semibold text-center mt-1 modal-title">Вход</div>
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="username" class="font-semibold">Почта</label>
@@ -38,7 +34,7 @@
           <label for="password" class="font-semibold">Пароль</label>
           <InputText placeholder="Придумайте пароль" type="password" />
         </div>
-        <Button label="Регистрация" @click="closeCallback" />
+        <Button label="Войти" @click="login" />
       </div>
     </template>
   </Dialog>
@@ -48,6 +44,19 @@
 import Logo from "@/assets/img/logo.svg";
 
 const model = defineModel();
+
+const authStore = useAuthStore();
+const email = ref("");
+const password = ref("");
+
+const login = async () => {
+  await authStore.login(email.value, password.value);
+  model.value = false;
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-title {
+  font-size: 22px;
+}
+</style>
