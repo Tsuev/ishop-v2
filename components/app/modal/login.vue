@@ -76,6 +76,8 @@
   </Dialog>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const visible = ref(false);
+</script>
 
 <style lang="scss" scoped></style>
