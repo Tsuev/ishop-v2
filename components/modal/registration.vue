@@ -27,7 +27,7 @@
           <div
             class="font-semibold text-center flex justify-center items-center mt-1 text-4xl"
           >
-            Войти
+            Регистрация
           </div>
         </div>
         <div class="inline-flex flex-col gap-2">
