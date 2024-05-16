@@ -22,14 +22,21 @@
       </nav>
       <div class="lk">
         <!-- <Icon name="ic:baseline-person" size="25" /> -->
-        <Button label="Регистрация" icon="pi pi-user" />
+        <Button
+          label="Регистрация"
+          icon="pi pi-user"
+          @click="openModal = true"
+        />
       </div>
     </div>
   </header>
+  <ModalLogin v-modal:modal="openModal" />
 </template>
 
 <script setup lang="ts">
 import Logo from "@/assets/img/logo.svg";
+
+const openModal = ref(false);
 </script>
 
 <style lang="scss" scoped>

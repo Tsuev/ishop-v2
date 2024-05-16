@@ -1,6 +1,6 @@
 <template>
   <Dialog
-    v-model:visible="visible"
+    v-model:visible="model"
     modal
     :pt="{
       root: 'border-none',
@@ -77,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-const visible = ref(false);
+const model = defineModel("modal", { default: false });
 </script>
 
 <style lang="scss" scoped></style>
