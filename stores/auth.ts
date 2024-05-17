@@ -6,9 +6,17 @@ export const useAuthStore = defineStore("auth", () => {
 
   const user = ref<User | null>(null);
 
-  const registration = async (email: string, password: string) => {
+  const registration = async (
+    email: string,
+    password: string,
+    phone: string
+  ) => {
     try {
-      const { data, error } = await supabase.auth.signUp({ email, password });
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        phone,
+      });
       if (error) {
         toast.add({
           severity: "error",

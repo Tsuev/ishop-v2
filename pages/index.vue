@@ -20,10 +20,6 @@ import {
   Pagination,
   Slide,
 } from "@/node_modules/vue3-carousel/dist/carousel.es";
-
-const authStore = useAuthStore();
-
-onMounted(() => authStore.authStateChange());
 </script>
 
 <style lang="scss" scoped>

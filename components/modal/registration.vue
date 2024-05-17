@@ -2,6 +2,7 @@
   <Dialog
     v-model:visible="model"
     modal
+    closable
     :style="{ width: '25rem' }"
     :pt="{
       root: 'border-none',
@@ -33,19 +34,24 @@
         <div class="inline-flex flex-col gap-2">
           <label for="username" class="font-semibold">Почта</label>
           <InputText
+            class="bg-white-alpha-20"
             v-model="email"
             placeholder="Например: example@mail.ru"
             size="small"
           />
         </div>
         <div class="inline-flex flex-col gap-2">
-          <label for="password" class="font-semibold">Пароль</label>
-          <InputText
-            v-model="password"
-            placeholder="Придумайте пароль"
-            type="password"
-            size="small"
+          <label for="username" class="font-semibold">Номер</label>
+          <InputMask
+            id="basic"
+            v-model="phone"
+            mask="+79999999999"
+            placeholder="+79289992828"
           />
+        </div>
+        <div class="inline-flex flex-col gap-2">
+          <label for="password" class="font-semibold">Пароль</label>
+          <InputText v-model="password" type="password" size="small" />
         </div>
         <Button label="Зарегистрироваться" @click="registration" />
       </div>
@@ -56,7 +62,7 @@
 <script setup lang="ts">
 import Logo from "@/assets/img/logo.svg";
 
-const model = defineModel();
+const model = defineModel({ default: false });
 const authStore = useAuthStore();
 
 const emit = defineEmits<{
@@ -65,9 +71,10 @@ const emit = defineEmits<{
 
 const email = ref("");
 const password = ref("");
+const phone = ref("");
 
 const registration = async () => {
-  await authStore.registration(email.value, password.value);
+  await authStore.registration(email.value, password.value, phone.value);
   emit("modalClose");
 };
 </script>
@@ -75,5 +82,17 @@ const registration = async () => {
 <style lang="scss" scoped>
 .modal-title {
   font-size: 22px;
+}
+
+:deep {
+  .p-inputtext {
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    border: none;
+    @apply text-white;
+    font-weight: bolder;
+    &::placeholder {
+      color: rgb(230, 230, 230);
+    }
+  }
 }
 </style>

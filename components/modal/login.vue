@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import Logo from "@/assets/img/logo.svg";
 
-const model = defineModel();
+const model = defineModel({ default: false });
 
 const authStore = useAuthStore();
 const email = ref("");
@@ -58,5 +58,17 @@ const login = async () => {
 <style lang="scss" scoped>
 .modal-title {
   font-size: 22px;
+}
+
+:deep {
+  .p-inputtext {
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    border: none;
+    @apply text-white;
+    font-weight: bolder;
+    &::placeholder {
+      color: rgb(230, 230, 230);
+    }
+  }
 }
 </style>

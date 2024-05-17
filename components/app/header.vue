@@ -21,7 +21,7 @@
         </ul>
       </nav>
       <div class="lk">
-        <NuxtLink v-if="user" to="/lk">
+        <NuxtLink v-if="user" :to="`/lk/${user.id}`">
           <Icon v-if="true" name="ic:baseline-person" size="25" />
         </NuxtLink>
         <div v-else class="auth-btns">
