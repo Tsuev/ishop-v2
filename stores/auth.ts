@@ -12,25 +12,18 @@ export const useAuthStore = defineStore("auth", () => {
     phone: string
   ) => {
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { data } = await supabase.auth.signUp({
         email,
         password,
         phone,
       });
-      if (error) {
-        toast.add({
-          severity: "error",
-          detail: "Произошла ошибка регистрации: " + error.message,
-          summary: "Ошибка",
-        });
-      } else {
-        user.value = data.user;
-        toast.add({
-          severity: "success",
-          detail: "Вы авторизовались",
-          summary: "Успешная регистрация",
-        });
-      }
+
+      user.value = data.user;
+      toast.add({
+        severity: "success",
+        detail: "Вы авторизовались",
+        summary: "Успешная регистрация",
+      });
     } catch (error) {
       toast.add({
         severity: "error",
@@ -58,10 +51,16 @@ export const useAuthStore = defineStore("auth", () => {
     });
   };
 
+  const getUser = async () => {
+    const { data } = await supabase.auth.getUser();
+
+    user.value = data.user;
+  };
   return {
     authStateChange,
     registration,
     login,
+    getUser,
     user,
   };
 });

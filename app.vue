@@ -8,6 +8,8 @@
 useHead({
   title: "iShop - Смартфоны",
 });
+
+definePageMeta({ middleware: ["auth"] });
 </script>
 
 <style lang="scss"></style>

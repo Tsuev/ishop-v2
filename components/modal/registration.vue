@@ -27,6 +27,7 @@
             >Введите почту</label
           >
           <InputText
+            v-model="email"
             id="username"
             class="bg-white-alpha-20 border-none p-3 text-primary-50 w-20rem"
           ></InputText>
@@ -36,6 +37,7 @@
             >Введите свой номер</label
           >
           <InputMask
+            v-model="phone"
             id="username"
             class="bg-white-alpha-20 border-none p-3 text-primary-50 w-20rem"
             mask="+79999999999"
@@ -46,6 +48,7 @@
             >Создайте пароль</label
           >
           <InputText
+            v-model="password"
             id="password"
             class="bg-white-alpha-20 border-none p-3 text-primary-50 w-20rem"
             type="password"

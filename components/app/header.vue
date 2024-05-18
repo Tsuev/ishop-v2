@@ -24,7 +24,7 @@
       </nav>
       <div class="lk">
         <NuxtLink v-if="user" :to="`/lk/${user.id}`">
-          <Icon v-if="true" name="ic:baseline-person" size="25" />
+          <Icon v-if="true" name="ic:baseline-person" size="25" color="white" />
         </NuxtLink>
         <div v-else class="auth-btns">
           <Button
@@ -70,7 +70,7 @@ onClickOutside(
 header {
   color: white;
   .container {
-    @apply py-[7px];
+    padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -88,6 +88,8 @@ header {
       a {
         color: white;
         text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
       }
     }
   }
