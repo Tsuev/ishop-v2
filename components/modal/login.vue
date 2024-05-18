@@ -60,15 +60,13 @@ const login = async () => {
   font-size: 22px;
 }
 
-:deep {
-  .p-inputtext {
-    background-color: rgba($color: #ffffff, $alpha: 0.1);
-    border: none;
-    @apply text-white;
-    font-weight: bolder;
-    &::placeholder {
-      color: rgb(230, 230, 230);
-    }
+:deep(.p-inputtext) {
+  background-color: rgba($color: #ffffff, $alpha: 0.1);
+  border: none;
+  @apply text-white;
+  font-weight: bolder;
+  &::placeholder {
+    color: rgb(230, 230, 230);
   }
 }
 </style>

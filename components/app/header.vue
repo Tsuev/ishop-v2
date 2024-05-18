@@ -79,8 +79,7 @@ header {
   }
 
   nav {
-    flex: 1;
-
+    font-weight: bold;
     ul {
       display: flex;
       justify-content: center;

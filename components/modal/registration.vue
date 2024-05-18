@@ -26,21 +26,23 @@
         <div class="title">
           <Logo class="mx-auto" />
           <div
-            class="modal-title font-semibold text-center flex justify-center items-center mt-2"
+            class="modal-title font-semibold text-center flex justify-center items-center mt-2 text-white"
           >
             Регистрация
           </div>
         </div>
         <div class="inline-flex flex-col gap-2">
-          <label for="username" class="font-semibold">Почта</label>
+          <label for="username" class="font-semibold text-white">Почта</label>
           <InputText class="bg-white-alpha-20" v-model="email" size="small" />
         </div>
         <div class="inline-flex flex-col gap-2">
-          <label for="username" class="font-semibold">Номер</label>
+          <label for="username" class="font-semibold text-white"
+            >Номер телефона</label
+          >
           <InputMask id="basic" v-model="phone" mask="+79999999999" />
         </div>
         <div class="inline-flex flex-col gap-2">
-          <label for="password" class="font-semibold">Пароль</label>
+          <label for="password" class="font-semibold text-white">Пароль</label>
           <InputText v-model="password" type="password" size="small" />
         </div>
         <Button label="Зарегистрироваться" @click="registration" />
