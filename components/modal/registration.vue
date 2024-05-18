@@ -33,21 +33,11 @@
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="username" class="font-semibold">Почта</label>
-          <InputText
-            class="bg-white-alpha-20"
-            v-model="email"
-            placeholder="Например: example@mail.ru"
-            size="small"
-          />
+          <InputText class="bg-white-alpha-20" v-model="email" size="small" />
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="username" class="font-semibold">Номер</label>
-          <InputMask
-            id="basic"
-            v-model="phone"
-            mask="+79999999999"
-            placeholder="+79289992828"
-          />
+          <InputMask id="basic" v-model="phone" mask="+79999999999" />
         </div>
         <div class="inline-flex flex-col gap-2">
           <label for="password" class="font-semibold">Пароль</label>
@@ -84,15 +74,13 @@ const registration = async () => {
   font-size: 22px;
 }
 
-:deep {
-  .p-inputtext {
-    background-color: rgba($color: #ffffff, $alpha: 0.1);
-    border: none;
-    @apply text-white;
-    font-weight: bolder;
-    &::placeholder {
-      color: rgb(230, 230, 230);
-    }
+:deep(.p-inputtext) {
+  background-color: rgba($color: #ffffff, $alpha: 0.1);
+  border: none;
+  @apply text-white;
+  font-weight: bolder;
+  &::placeholder {
+    color: rgb(230, 230, 230);
   }
 }
 </style>
