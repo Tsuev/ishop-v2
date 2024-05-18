@@ -24,8 +24,11 @@ import {
 
 <style lang="scss" scoped>
 .carousel__item {
-  @apply w-full h-28;
-  @apply bg-cover bg-no-repeat h-[400px];
+  width: 100%;
+  height: 28px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
   background-position: 0% 42%;
   background-image: url("https://srfimchuyzdzdqakerce.supabase.co/storage/v1/object/public/slides/slide-1.png");
 }

@@ -1,8 +1,10 @@
 <template>
-  <header>
+  <header class="bg-primary">
     <div class="container">
       <div class="logo">
-        <Logo />
+        <NuxtLink to="/">
+          <Logo />
+        </NuxtLink>
       </div>
       <nav>
         <ul>
@@ -32,8 +34,8 @@
             @click="openLogin = true"
           />
           <Button
-            label="Регистрация"
             outlined
+            label="Регистрация"
             class="text-white px-[15px] py-1"
             @click="openRegistration = true"
           />
@@ -62,12 +64,10 @@ onClickOutside(
   registrationModal,
   () => ([openRegistration.value, openLogin.value] = [false, false])
 );
-console.log(user);
 </script>
 
 <style lang="scss" scoped>
 header {
-  background-color: var(--primary-color);
   color: white;
   .container {
     @apply py-[7px];
@@ -84,6 +84,11 @@ header {
       display: flex;
       justify-content: center;
       gap: 30px;
+      list-style-type: none;
+      a {
+        color: white;
+        text-decoration: none;
+      }
     }
   }
 

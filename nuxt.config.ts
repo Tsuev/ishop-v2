@@ -10,17 +10,11 @@ export default defineNuxtConfig({
     "nuxt-icon",
   ],
   css: [
-    "@/assets/styles/tailwind.scss",
+    "primeflex/primeflex.css",
     "primevue/resources/themes/lara-light-blue/theme.css",
     "@/assets/styles/_index.scss",
     "primeicons/primeicons.css",
   ],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
   runtimeConfig: {
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
