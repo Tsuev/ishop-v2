@@ -22,8 +22,8 @@
           </li>
         </ul>
       </nav>
-      <div class="lk">
-        <NuxtLink v-if="user" :to="`/lk/${user.id}`">
+      <div class="profile">
+        <NuxtLink v-if="user" :to="`/profile`">
           <Icon v-if="true" name="ic:baseline-person" size="25" color="white" />
         </NuxtLink>
         <div v-else class="auth-btns">
@@ -88,13 +88,13 @@ header {
       a {
         color: white;
         text-decoration: none;
-        padding: 10px;
+        padding: 2px 9px;
         border-radius: 5px;
       }
     }
   }
 
-  .lk {
+  .profile {
     cursor: pointer;
   }
 }

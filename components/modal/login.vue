@@ -2,7 +2,6 @@
   <Dialog
     v-model:visible="model"
     modal
-    :style="{ width: '25rem' }"
     :pt="{
       root: 'border-none',
       mask: {
@@ -10,9 +9,9 @@
       },
     }"
   >
-    <template #container>
+    <template #container="{ closeCallback }">
       <div
-        class="flex flex-col px-5 py-5 gap-4"
+        class="flex flex-column px-5 py-5 gap-4"
         style="
           border-radius: 12px;
           background-image: radial-gradient(
@@ -22,19 +21,42 @@
           );
         "
       >
-        <div class="title">
-          <Logo class="mx-auto" />
-          <div class="font-semibold text-center mt-1 modal-title">Вход</div>
+        <Logo class="mx-auto" />
+        <div class="inline-flex flex-column gap-2">
+          <label for="username" class="text-primary-50 font-semibold"
+            >Почта</label
+          >
+          <InputText
+            v-model="email"
+            id="username"
+            class="bg-white-alpha-20 border-none p-3 text-primary-50 w-20rem"
+          ></InputText>
         </div>
-        <div class="inline-flex flex-col gap-2">
-          <label for="username" class="font-semibold">Почта</label>
-          <InputText placeholder="Например: example@mail.ru" />
+        <div class="inline-flex flex-column gap-2">
+          <label for="password" class="text-primary-50 font-semibold"
+            >Пароль</label
+          >
+          <InputText
+            v-model="password"
+            id="password"
+            class="bg-white-alpha-20 border-none p-3 text-primary-50 w-20rem"
+            type="password"
+          ></InputText>
         </div>
-        <div class="inline-flex flex-col gap-2">
-          <label for="password" class="font-semibold">Пароль</label>
-          <InputText placeholder="Придумайте пароль" type="password" />
+        <div class="flex align-items-center gap-3">
+          <Button
+            label="Назад"
+            @click="closeCallback"
+            text
+            class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+          ></Button>
+          <Button
+            label="Войти"
+            @click="registration"
+            text
+            class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+          ></Button>
         </div>
-        <Button label="Войти" @click="login" />
       </div>
     </template>
   </Dialog>
@@ -44,14 +66,18 @@
 import Logo from "@/assets/img/logo.svg";
 
 const model = defineModel({ default: false });
-
 const authStore = useAuthStore();
+
+const emit = defineEmits<{
+  (e: "modalClose"): void;
+}>();
+
 const email = ref("");
 const password = ref("");
 
-const login = async () => {
+const registration = async () => {
   await authStore.login(email.value, password.value);
-  model.value = false;
+  emit("modalClose");
 };
 </script>
 

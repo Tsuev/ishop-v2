@@ -15,5 +15,7 @@ body {
   margin: 0 auto;
 }
 
-.router-link-active.router-link-exact-active {
+.router-link-active.router-link-exact-active:not(.lk > a, .logo > a) {
+  background-color: white;
+  color: #3B82F6;
 }

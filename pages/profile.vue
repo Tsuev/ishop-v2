@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <div class="lk">
+    <div class="profile">
       <div class="tabs">
         <div class="tabs-title font-semibold text-lg">Личный кабинет</div>
 
@@ -12,7 +12,7 @@
           <Icon :name="tab.icon" size="23" class="mr-2" />
           <span class="font-semibold text-lg">{{ tab.title }}</span>
         </div>
-        <div class="tab exit flex align-items-center">
+        <div class="tab exit flex align-items-center" @click="logout">
           <Icon
             name="ic:baseline-exit-to-app"
             size="25"
@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+const authStore = useAuthStore();
+
 const menu = ref([
   {
     id: 1,
@@ -52,10 +54,15 @@ const menu = ref([
     icon: "ic:baseline-format-list-numbered",
   },
 ]);
+
+const logout = () => {
+  authStore.logout();
+  navigateTo("/");
+};
 </script>
 
 <style lang="scss" scoped>
-.lk {
+.profile {
   display: grid;
   grid-template-columns: 1fr 3fr;
   column-gap: 10px;
