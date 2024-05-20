@@ -10,6 +10,8 @@ useHead({
 });
 
 definePageMeta({ middleware: ["auth"] });
+
+// const { mobile } = useDeviceBreakpoints();
 </script>
 
 <style lang="scss"></style>

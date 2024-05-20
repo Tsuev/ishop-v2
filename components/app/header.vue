@@ -1,12 +1,15 @@
 <template>
   <header class="bg-primary">
     <div class="container">
+      <Button v-if="mobile" class="p-0">
+        <Icon name="ic:round-menu" size="25" color="white" />
+      </Button>
       <div class="logo">
         <NuxtLink to="/">
           <Logo />
         </NuxtLink>
       </div>
-      <nav>
+      <nav v-if="!mobile">
         <ul>
           <li>
             <NuxtLink to="/catalog">Каталог</NuxtLink>
@@ -60,17 +63,14 @@ const openLogin = ref(false);
 const openRegistration = ref(false);
 const registrationModal = ref(null);
 
-onClickOutside(
-  registrationModal,
-  () => ([openRegistration.value, openLogin.value] = [false, false])
-);
+const { mobile } = useDeviceBreakpoints();
 </script>
 
 <style lang="scss" scoped>
 header {
   color: white;
   .container {
-    padding: 0 20px;
+    padding: 5px 20px;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
