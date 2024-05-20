@@ -1,5 +1,5 @@
 <template>
-  <div>profile</div>
+  <div class="mobileNav"></div>
 </template>
 
 <script setup lang="ts"></script>

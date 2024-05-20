@@ -28,11 +28,13 @@ export const useAuthStore = defineStore("auth", () => {
       toast.add({
         severity: "success",
         detail: "Вы авторизовались",
+        life: 2000,
         summary: "Успешная регистрация",
       });
     } catch (error) {
       toast.add({
         severity: "error",
+        life: 2000,
         detail: "Произошла ошибка регистрации",
         summary: "Ошибка",
       });
@@ -51,12 +53,14 @@ export const useAuthStore = defineStore("auth", () => {
       user.value = data.user;
       toast.add({
         severity: "success",
+        life: 2000,
         detail: "Вы вошли в свой аккаунт",
         summary: "Успешный вход",
       });
     } catch (error) {
       toast.add({
         severity: "error",
+        life: 2000,
         detail: "Произошла ошибка авторизации",
         summary: "Ошибка",
       });
@@ -68,6 +72,7 @@ export const useAuthStore = defineStore("auth", () => {
     user.value = null;
     toast.add({
       severity: "info",
+      life: 2000,
       detail: "Вы вышли из аккаунта",
       summary: "Выход",
     });
@@ -87,6 +92,7 @@ export const useAuthStore = defineStore("auth", () => {
     } catch (error) {
       toast.add({
         severity: "error",
+        life: 2000,
         detail: "Произошла ошибка при получении ваших данных",
         summary: "Ошибка",
       });

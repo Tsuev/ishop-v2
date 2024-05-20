@@ -23,14 +23,21 @@
         </div>
       </div>
       <div class="content">
-        <component :is="" />
+        <div class="content-title font-semibold text-xl mb-5">
+          Личные данные
+        </div>
+        <component :is="ProfileUser" />
       </div>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+import ProfileUser from "@/components/profile/user.vue";
+
 const authStore = useAuthStore();
+
+definePageMeta({ middleware: ["auth"] });
 
 const menu = ref([
   {
