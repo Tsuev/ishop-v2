@@ -20,12 +20,6 @@ import {
   Pagination,
   Slide,
 } from "@/node_modules/vue3-carousel/dist/carousel.es";
-
-const supabase = useSupabaseClient();
-
-let { data: products, error } = await supabase.from("products").select("*");
-
-console.log(products);
 </script>
 
 <style lang="scss" scoped>

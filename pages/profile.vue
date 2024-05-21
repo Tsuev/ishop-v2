@@ -1,16 +1,16 @@
 <template>
   <NuxtLayout>
     <div class="profile">
-      <div class="tabs">
+      <div v-if="!mobile" class="tabs">
         <div class="tabs-title font-semibold text-lg">Личный кабинет</div>
 
         <div
-          v-for="tab in menu"
-          :key="tab.id"
+          v-for="{ key, icon, title } in profileNavigation"
+          :key
           class="tab flex align-items-center"
         >
-          <Icon :name="tab.icon" size="23" class="mr-2" />
-          <span class="font-semibold text-lg">{{ tab.title }}</span>
+          <Icon :name="icon" size="23" class="mr-2" />
+          <span class="font-semibold text-lg">{{ title }}</span>
         </div>
         <div class="tab exit flex align-items-center" @click="logout">
           <Icon
@@ -26,7 +26,7 @@
         <div class="content-title font-semibold text-xl mb-5">
           Личные данные
         </div>
-        <component :is="ProfileUser" />
+        <component :is="ProfileAddProduct" />
       </div>
     </div>
   </NuxtLayout>
@@ -34,33 +34,12 @@
 
 <script setup lang="ts">
 import ProfileUser from "@/components/profile/user.vue";
+import ProfileAddProduct from "@/components/profile/addProduct.vue";
 
 const authStore = useAuthStore();
+const { mobile } = useDeviceBreakpoints();
 
 definePageMeta({ middleware: ["auth"] });
-
-const menu = ref([
-  {
-    id: 1,
-    title: "Профиль",
-    icon: "ic:baseline-person",
-  },
-  {
-    id: 2,
-    title: "Добавить товар",
-    icon: "ic:twotone-smartphone",
-  },
-  {
-    id: 3,
-    title: "Опубликовать заказ",
-    icon: "ic:twotone-smartphone",
-  },
-  {
-    id: 4,
-    title: "Список заказов",
-    icon: "ic:baseline-format-list-numbered",
-  },
-]);
 
 const logout = () => {
   authStore.logout();
