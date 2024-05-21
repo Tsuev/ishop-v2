@@ -39,7 +39,7 @@ import ProfileAddProduct from "@/components/profile/addProduct.vue";
 const authStore = useAuthStore();
 const { mobile } = useDeviceBreakpoints();
 
-definePageMeta({ middleware: ["auth"] });
+definePageMeta({ middleware: ["auth", "profile"] });
 
 const logout = () => {
   authStore.logout();

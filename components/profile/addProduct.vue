@@ -17,8 +17,6 @@
   </Card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const productsStore = useProductsStore();
-
-productsStore.getUserProducts();
 </script>

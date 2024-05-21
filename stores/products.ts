@@ -1,3 +1,5 @@
+import type { ProductType } from "@/types/products";
+
 export const useProductsStore = defineStore("products", () => {
   const supabase = useSupabaseClient();
   const toast = useToast();
@@ -11,7 +13,7 @@ export const useProductsStore = defineStore("products", () => {
       const { data, error } = await supabase
         .from("products")
         .select("*")
-        .eq("user_id", authStore.user?.id);
+        .eq("user_id", authStore.user?.id as string);
 
       if (error) throw error;
 
@@ -26,9 +28,26 @@ export const useProductsStore = defineStore("products", () => {
     }
   };
 
+  const createProduct = async (product: ProductType) => {
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .insert([product] as never[])
+        .select();
+    } catch (error) {
+      toast.add({
+        severity: "error",
+        life: 2000,
+        detail: "Произошла ошибка подгрузки ваших смартфонов",
+        summary: "Ошибка",
+      });
+    }
+  };
+
   return {
     getUserProducts,
-    products,
+    createProduct,
     userProducts,
+    products,
   };
 });
