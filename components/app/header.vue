@@ -1,7 +1,7 @@
 <template>
   <header class="bg-primary">
     <div class="container">
-      <Button v-if="mobile" class="p-0">
+      <Button v-if="mobile" @click="openSidebar = true" class="p-0">
         <Icon name="ic:round-menu" size="25" color="white" />
       </Button>
       <div class="logo">
@@ -9,24 +9,9 @@
           <Logo />
         </NuxtLink>
       </div>
-      <nav v-if="!mobile">
-        <ul>
-          <li>
-            <NuxtLink to="/catalog">Каталог</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/orders">Смартфон под заказ</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/repair">Ремонтные сервисы</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/used-smartphones">Б/У смартфоны</NuxtLink>
-          </li>
-        </ul>
-      </nav>
+      <AppNavigationNav v-if="!mobile" />
       <div class="profile">
-        <NuxtLink v-if="user" :to="`/profile`">
+        <NuxtLink v-if="user" to="/profile">
           <Icon v-if="true" name="ic:baseline-person" size="25" color="white" />
         </NuxtLink>
         <div v-else class="auth-btns">
@@ -51,6 +36,7 @@
     v-model:visible="openRegistration"
     @modalClose="openRegistration = false"
   />
+  <AppSidebar v-model:visible="openSidebar" />
 </template>
 
 <script setup lang="ts">
@@ -61,7 +47,7 @@ const { user } = storeToRefs(useAuthStore());
 
 const openLogin = ref(false);
 const openRegistration = ref(false);
-const registrationModal = ref(null);
+const openSidebar = ref(false);
 
 const { mobile } = useDeviceBreakpoints();
 </script>

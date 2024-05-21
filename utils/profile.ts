@@ -8,7 +8,7 @@ export const profileNavigation: ProfileNavigationType[] = [
     icon: "ic:baseline-person",
   },
   {
-    key: ProfileNavigationEnum.AddProduct,
+    key: ProfileNavigationEnum.Product,
     title: "Добавить товар",
     icon: "ic:twotone-smartphone",
   },

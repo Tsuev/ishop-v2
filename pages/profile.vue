@@ -1,32 +1,36 @@
 <template>
   <NuxtLayout>
     <div class="profile">
-      <div v-if="!mobile" class="tabs">
-        <div class="tabs-title font-semibold text-lg">Личный кабинет</div>
+      <div v-if="!mobile" class="col-3">
+        <div class="tabs">
+          <div class="tabs-title font-semibold text-lg">Личный кабинет</div>
 
-        <div
-          v-for="{ key, icon, title } in profileNavigation"
-          :key
-          class="tab flex align-items-center"
-        >
-          <Icon :name="icon" size="23" class="mr-2" />
-          <span class="font-semibold text-lg">{{ title }}</span>
-        </div>
-        <div class="tab exit flex align-items-center" @click="logout">
-          <Icon
-            name="ic:baseline-exit-to-app"
-            size="25"
-            color="#E52B50"
-            class="mr-2"
-          />
-          <span class="font-semibold text-lg">Выйти из аккаунта</span>
+          <div
+            v-for="{ key, icon, title } in profileNavigation"
+            :key
+            class="tab flex align-items-center"
+          >
+            <Icon :name="icon" size="23" class="mr-2" />
+            <span class="font-semibold text-lg">{{ title }}</span>
+          </div>
+          <div class="tab exit flex align-items-center" @click="logout">
+            <Icon
+              name="ic:baseline-exit-to-app"
+              size="25"
+              color="#E52B50"
+              class="mr-2"
+            />
+            <span class="font-semibold text-lg">Выйти из аккаунта</span>
+          </div>
         </div>
       </div>
-      <div class="content">
-        <div class="content-title font-semibold text-xl mb-5">
-          Личные данные
+      <div :class="[mobile ? 'col-12' : 'col-9']">
+        <div class="content">
+          <div class="content-title font-semibold text-xl mb-5">
+            Личные данные
+          </div>
+          <component :is="ProfileProducts" />
         </div>
-        <component :is="ProfileAddProduct" />
       </div>
     </div>
   </NuxtLayout>
@@ -34,7 +38,7 @@
 
 <script setup lang="ts">
 import ProfileUser from "@/components/profile/user.vue";
-import ProfileAddProduct from "@/components/profile/addProduct.vue";
+import ProfileProducts from "@/components/profile/product.vue";
 
 const authStore = useAuthStore();
 const { mobile } = useDeviceBreakpoints();
@@ -48,10 +52,10 @@ const logout = () => {
 </script>
 
 <style lang="scss" scoped>
+@import "primeflex/primeflex.scss";
+
 .profile {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  column-gap: 10px;
+  @include styleclass("grid");
 }
 
 .tabs,
