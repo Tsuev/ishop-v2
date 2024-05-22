@@ -15,8 +15,17 @@
       <h2>Нет добавленных товаров</h2>
     </template>
   </Card>
+  <Button
+    label="Добавить смартфон"
+    class="px-2 py-2 mt-3"
+    @click="openAddProductModal = true"
+  />
+
+  <ModalAddProduct v-model:visible="openAddProductModal" />
 </template>
 
 <script setup lang="ts">
 const productsStore = useProductsStore();
+
+const openAddProductModal = ref(false);
 </script>

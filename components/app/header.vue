@@ -4,16 +4,16 @@
       <Button v-if="mobile" @click="openSidebar = true" class="p-0">
         <Icon name="ic:round-menu" size="25" color="white" />
       </Button>
-      <div class="logo">
-        <NuxtLink to="/">
-          <Logo />
-        </NuxtLink>
-      </div>
-      <AppNavigationNav v-if="!mobile" />
+      <Logo class="logo" @click="$router.push('/')" />
+      <AppNavigationDesktop v-if="!mobile" />
       <div class="profile">
-        <NuxtLink v-if="user" to="/profile">
-          <Icon v-if="true" name="ic:baseline-person" size="25" color="white" />
-        </NuxtLink>
+        <Icon
+          v-if="user"
+          @click="$router.push('/profile')"
+          name="ic:baseline-person"
+          size="25"
+          color="white"
+        />
         <div v-else class="auth-btns">
           <Button
             label="Вход"
@@ -62,6 +62,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .logo {
+    cursor: pointer;
   }
 
   nav {

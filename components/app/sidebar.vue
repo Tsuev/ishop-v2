@@ -19,7 +19,6 @@
             class="h-2rem w-2rem"
           />
         </div>
-        <AppNavigationNav />
       </div>
     </template>
   </Sidebar>

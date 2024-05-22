@@ -8,7 +8,11 @@
           <div
             v-for="{ key, icon, title } in profileNavigation"
             :key
-            class="tab flex align-items-center"
+            :class="[
+              'tab flex align-items-center',
+              { active: key === currentComponent },
+            ]"
+            @click="currentComponent = key"
           >
             <Icon :name="icon" size="23" class="mr-2" />
             <span class="font-semibold text-lg">{{ title }}</span>
@@ -27,9 +31,14 @@
       <div :class="[mobile ? 'col-12' : 'col-9']">
         <div class="content">
           <div class="content-title font-semibold text-xl mb-5">
-            Личные данные
+            {{ currentTitle }}
           </div>
-          <component :is="ProfileProducts" />
+          <ProfileUser
+            v-if="currentComponent === ProfileNavigationEnum.Profile"
+          />
+          <ProfileProduct
+            v-if="currentComponent === ProfileNavigationEnum.Product"
+          />
         </div>
       </div>
     </div>
@@ -37,13 +46,29 @@
 </template>
 
 <script setup lang="ts">
-import ProfileUser from "@/components/profile/user.vue";
-import ProfileProducts from "@/components/profile/product.vue";
+import { ProfileNavigationEnum } from "~/enums/profile";
+
+type currentComponentType =
+  | ProfileNavigationEnum.Profile
+  | ProfileNavigationEnum.Product;
 
 const authStore = useAuthStore();
 const { mobile } = useDeviceBreakpoints();
 
 definePageMeta({ middleware: ["auth", "profile"] });
+
+const currentComponent = ref<currentComponentType>(
+  ProfileNavigationEnum.Profile
+);
+
+const currentTitle = computed(() => {
+  switch (currentComponent.value) {
+    case ProfileNavigationEnum.Profile:
+      return "Личный кабинет";
+    case ProfileNavigationEnum.Product:
+      return "Мои продукты";
+  }
+});
 
 const logout = () => {
   authStore.logout();
@@ -77,6 +102,10 @@ const logout = () => {
   &:hover {
     color: var(--primary-color);
   }
+}
+
+.tab.active {
+  color: var(--primary-color);
 }
 
 .tab.exit {
