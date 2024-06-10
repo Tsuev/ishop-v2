@@ -21,7 +21,10 @@
     @click="openAddProductModal = true"
   />
 
-  <ModalAddProduct v-model:visible="openAddProductModal" />
+  <ModalAddProduct
+    v-model:visible="openAddProductModal"
+    @modal-close="openAddProductModal = false"
+  />
 </template>
 
 <script setup lang="ts">
