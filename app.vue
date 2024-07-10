@@ -5,10 +5,6 @@
 </template>
 
 <script setup lang="ts">
-useHead({
-  title: "iShop - Смартфоны",
-});
-
 definePageMeta({ middleware: ["auth"] });
 </script>
 

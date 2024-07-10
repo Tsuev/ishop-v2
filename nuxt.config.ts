@@ -32,4 +32,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [svgLoader()],
   },
+  app: {
+    head: {
+      title: "iShop - Смартфоны",
+    },
+  },
 });

@@ -2,7 +2,6 @@
   <Dialog
     v-model:visible="model"
     modal
-    :closable="false"
     header="Добавить смартфон"
     :style="{ width: '25rem' }"
   >
@@ -60,17 +59,19 @@
       />
     </div>
     <div class="flex flex-column gap-2 mb-3">
+      <label>Фотографии</label>
+      <InputNumber
+        v-model="smartphoneQueries.battery"
+        :min="0"
+        :max="100"
+        placeholder="Например: 70, 80"
+      />
+    </div>
+    <div class="flex flex-column gap-2 mb-3">
       <label>Новый</label>
       <InputSwitch v-model="smartphoneQueries.new" />
     </div>
     <div class="flex gap-2">
-      <Button
-        type="button"
-        label="Назад"
-        severity="secondary"
-        class="w-full"
-        @click="closeModal"
-      ></Button>
       <Button
         type="button"
         label="Добавить"

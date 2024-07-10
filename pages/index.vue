@@ -9,7 +9,18 @@
       <Pagination />
     </template>
   </Carousel>
-  <div class="container"></div>
+  <div class="container">
+    <BaseSection title="Самое популярное">
+      <template #content>
+        <div class="product-list">
+          <BaseProductCard />
+          <BaseProductCard />
+          <BaseProductCard />
+          <BaseProductCard />
+        </div>
+      </template>
+    </BaseSection>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,5 +53,11 @@ import {
 .carousel__pagination {
   .carousel__pagination-item {
   }
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 </style>
